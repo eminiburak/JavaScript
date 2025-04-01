@@ -7,26 +7,34 @@ const images = [
 
 let currentIndex = 0;
       const imageDisplay = document.getElementById("imageDisplay");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
 
       function updateImage(index) {
         imageDisplay.src = images[index];
+        prevBtn.disabled = index === 0;
+        nextBtn.disabled = index === images.length - 1;
       }
 
-      document.getElementById("prevBtn").addEventListener("click", () => {
-        currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
-        updateImage(currentIndex);
+      prevBtn.addEventListener("click", () => {
+        if (currentIndex > 0) {
+          currentIndex--;
+          updateImage(currentIndex);
+        }
       });
 
-      document.getElementById("nextBtn").addEventListener("click", () => {
-        currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
-        updateImage(currentIndex);
+      nextBtn.addEventListener("click", () => {
+        if (currentIndex < images.length - 1) {
+          currentIndex++;
+          updateImage(currentIndex);
+        }
       });
 
       document.addEventListener("keydown", (event) => {
-        if (event.key === "ArrowLeft") {
-          currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
-        } else if (event.key === "ArrowRight") {
-          currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+        if (event.key === "ArrowLeft" && currentIndex > 0) {
+          currentIndex--;
+        } else if (event.key === "ArrowRight" && currentIndex < images.length - 1) {
+          currentIndex++;
         }
         updateImage(currentIndex);
       });
