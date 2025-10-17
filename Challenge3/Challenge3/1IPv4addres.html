@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>IPv4 Validator</title>
+</head>
+<body>
+  <h2>IPv4 Address Validator</h2>
+  <p id="output"></p>
+
+  <script>
+    function isIPv4Address(inputString) {
+      const parts = inputString.split(".");
+      
+      if (parts.length !== 4) return false;
+
+      return parts.every(part => {
+        if (part === "" || isNaN(part)) return false;
+        const num = Number(part);
+        return num >= 0 && num <= 255 && String(num) === part;
+      });
+    }
+
+    const testCases = [
+      "172.16.254.1",
+      "172.316.254.1",
+      ".254.255.1",
+      "192.168.0.100",
+      "255.255.255.255",
+      "192.168.01.1"
+    ];
+
+    const output = document.getElementById("output");
+    output.innerHTML = testCases
+      .map(ip => `<p>${ip}: ${isIPv4Address(ip) ? "✅ Valid" : "❌ Invalid"}</p>`)
+      .join("");
+  </script>
+</body>
+</html>
