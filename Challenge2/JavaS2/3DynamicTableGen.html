@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dynamic Table Generator</title>
+ 
+</head>
+<body>
+  <h2>Dynamic Table Generator</h2>
+
+  <script>
+    function generateTable(rows, cols) {
+      const table = document.createElement("table");
+
+      for (let i = 0; i < rows; i++) {
+        const tr = document.createElement("tr");
+
+        for (let j = 0; j < cols; j++) {
+          let cell;
+          if (i === 0) {
+            cell = document.createElement("th");
+            cell.textContent = `Header ${j + 1}`;
+          } else {
+            cell = document.createElement("td");
+            cell.textContent = `Row ${i}, Col ${j + 1}`;
+          }
+          tr.appendChild(cell);
+        }
+
+        table.appendChild(tr);
+      }
+
+      document.body.appendChild(table);
+    }
+
+    const rows = parseInt(prompt("Enter number of rows:"), 10);
+    const cols = parseInt(prompt("Enter number of columns:"), 10);
+
+    generateTable(rows, cols);
+  </script>
+</body>
+</html>

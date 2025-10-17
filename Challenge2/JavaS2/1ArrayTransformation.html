@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Array Transformation</title>
+</head>
+<body>
+  <h2>Array Transformation</h2>
+  <p id="result"></p>
+
+  <script>
+    function transformArray(arr) {
+      const result = [];
+
+      for (let i = 0; i < arr.length; i++) {
+        const num = arr[i];
+        if (num <= 10) {
+          result.push(num * 2);
+        } else {
+          result.push(num * 4);
+        }
+      }
+
+      return result;
+    }
+
+    const array = [1, 5, 10, 11, 20, 34];
+    const transformed = transformArray(array);
+
+    document.getElementById("result").textContent =
+      `Original: [${array}] → Transformed: [${transformed}]`;
+  </script>
+</body>
+</html>
